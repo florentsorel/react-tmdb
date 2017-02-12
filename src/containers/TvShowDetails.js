@@ -30,6 +30,9 @@ var TvShowDetails = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      isLoading: true,
+    });
     this.findTvShow(nextProps.data.id);
   },
 
