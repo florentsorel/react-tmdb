@@ -1,34 +1,37 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 
-var Search = require('./containers/Search');
-var TvShowDetails = require('./containers/TvShowDetails');
+import Search from './containers/Search'
+import TvShowDetails from './containers/TvShowDetails'
 
-var App = React.createClass({
-  getInitialState: function() {
-    return {
-      tvShow: null,
+class App extends Component {
+
+  constructor() {
+    super()
+    this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      tvShow: null
     }
-  },
+  }
 
-  handleChange: function(data) {
+  handleChange (data) {
     if (data.length === 0) {
-      return;
+      return
     }
 
     if (this.state.tvShow !== null) {
-      var oldValue = this.state.tvShow.name;
+      var oldValue = this.state.tvShow.name
       if (oldValue == data[0].name) {
-        return;
+        return
       }
     }
 
     this.setState({
       tvShow: data[0]
-    });
-  },
+    })
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="container">
         <div className="jumbotron">
@@ -41,6 +44,6 @@ var App = React.createClass({
       </div>
     )
   }
-});
+}
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'))

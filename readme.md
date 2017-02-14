@@ -5,7 +5,7 @@ This app was build to learn [ReactJS](https://facebook.github.io/react/).
 Create a ```./src/tmdb/api_key.js``` file with the following content:
 
 ```
-module.exports = 'YOUR_API_KEY';
+export default 'YOUR_API_KEY';
 ```
 
 You can get an API key in your [tmdb account](https://www.themoviedb.org/)

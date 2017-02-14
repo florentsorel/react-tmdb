@@ -1,61 +1,65 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var TvShow = require('../components/TvShow');
+import React, { Component, PropTypes } from 'react'
+import TvShow from '../components/TvShow'
+import moment from 'moment'
+import tmdb from '../tmdb/api'
 
-var tmdb = require('../tmdb/api');
+class TvShowDetails extends Component {
 
-var TvShowDetails = React.createClass({
-  propTypes: {
+  static propTypes = {
     data: PropTypes.object.isRequired
-  },
+  }
 
-  getInitialState: function() {
-    return {
+  constructor() {
+    super()
+    this.state = {
       isLoading: true,
       tvShow: null,
     }
-  },
+  }
 
-  findTvShow: function(tvShowId) {
+  findTvShow (tvShowId) {
     tmdb.find(tvShowId)
-      .then(function(response) {
+      .then(response => {
         this.setState({
           isLoading: false,
           tvShow: response.data
-        });
-      }.bind(this))
-      .catch(function(error) {
+        })
+      })
+      .catch(error => {
         console.warn('Error during the tv show request:' + error)
-      });
-  },
+      })
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps (nextProps) {
     this.setState({
       isLoading: true,
-    });
-    this.findTvShow(nextProps.data.id);
-  },
+    })
+    this.findTvShow(nextProps.data.id)
+  }
 
-  componentDidMount: function() {
-    this.findTvShow(this.props.data.id);
-  },
+  componentDidMount () {
+    this.findTvShow(this.props.data.id)
+  }
 
-  render: function() {
+  render () {
     if (this.state.isLoading === true) {
       return (
         <div>Loading...</div>
       )
     }
 
+    const data = this.props.data
     return (
-      <div>
+      <div className="tvshow-list">
         <TvShow
-          name={this.props.data.original_name} />
+          name={data.original_name}
+          poster={data.poster_path}
+          firstAirDate={moment(data.first_air_date).format('MM/DD/YYYY')} />
 
       </div>
     )
   }
 
-});
+}
 
-module.exports = TvShowDetails;
+export default TvShowDetails

@@ -1,26 +1,25 @@
-var axios = require('axios');
+import axios from 'axios'
+import API_KEY from './api_key'
 
-var API_KEY = require('./api_key');
-
-var tmdb = axios.create({
+const tmdb = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
-});
+})
 
-var params = '?api_key=' + API_KEY;
+const params = '?api_key=' + API_KEY
 
-function searchTvShow(query) {
+function searchTvShow (query) {
   return tmdb.get('/search/tv' + params + '&query=' + query)
 }
 
-function findTvShow(tvId) {
-  return tmdb.get('/tv/' + tvId + params);
+function findTvShow (tvId) {
+  return tmdb.get('/tv/' + tvId + params)
 }
 
-module.exports = {
-  search: function(query) {
-    return searchTvShow(query);
+export default {
+  search: function (query) {
+    return searchTvShow(query)
   },
-  find: function(tvShowId) {
-    return findTvShow(tvShowId);
+  find: function (tvShowId) {
+    return findTvShow(tvShowId)
   }
 }

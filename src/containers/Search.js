@@ -1,40 +1,40 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var Typeahead = require('react-bootstrap-typeahead').Typeahead;
-var AsyncTypeahead = require('react-bootstrap-typeahead').asyncContainer(Typeahead);
-var tmdb = require('../tmdb/api');
+import React, { Component, PropTypes } from 'react'
+import { asyncContainer, Typeahead } from 'react-bootstrap-typeahead'
+const AsyncTypeahead = asyncContainer(Typeahead)
+import tmdb from '../tmdb/api'
 
-var Search = React.createClass({
-  propTypes: {
+class Search extends Component {
+
+  static propTypes = {
     placeholder: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired
-  },
+  }
 
-  getDefaultProps: function() {
-    return {
-      placeholder: 'Search...'
-    }
-  },
+  static defaultProps = {
+    placeholder: 'Search...'
+  }
 
-  getInitialState: function() {
-    return {
+  constructor () {
+    super()
+    this.handleSearch = this.handleSearch.bind(this)
+    this.state = {
       options: []
     }
-  },
+  }
 
-  handleSearch: function(query) {
+  handleSearch (query) {
     tmdb.search(query)
-      .then(function(response) {
+      .then(response => {
         this.setState({
           options: response.data.results
-        });
-      }.bind(this))
-      .catch(function(error) {
-        console.warn('Error during the search:' + search)
-      });
-  },
+        })
+      })
+      .catch(error => {
+        console.warn('Error during the search:' + error)
+      })
+  }
 
-  render: function() {
+  render () {
     return (
       <AsyncTypeahead
         delay={500}
@@ -49,6 +49,6 @@ var Search = React.createClass({
     )
   }
 
-});
+}
 
-module.exports = Search;
+export default Search
