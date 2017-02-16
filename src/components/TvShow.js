@@ -3,12 +3,12 @@ import React, { PropTypes } from 'react'
 const TvShow = (props) => {
   const posterUrl = 'https://image.tmdb.org/t/p/w' + props.posterSize + props.poster
   return (
-    <div className="tvshow-list-item">
-      {props.name}
-
-      <img src={posterUrl} alt={props.name} />
-
-      {props.firstAirDate && <div>{props.firstAirDate}</div>}
+    <div className="tvshow">
+      <img src={posterUrl} alt={props.name} className="tvshow-poster"/>
+      <div className="tvshow-info">
+        <div className="tvshow-info-title">{props.name}</div>
+        {props.firstAirDate && <div>{props.firstAirDate}</div>}
+      </div>
     </div>
   )
 }
@@ -21,7 +21,7 @@ TvShow.propTypes = {
 }
 
 TvShow.defaultProps = {
-  posterSize: 154
+  posterSize: 92
 }
 
 export default TvShow
