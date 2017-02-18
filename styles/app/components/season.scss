@@ -1,11 +1,14 @@
 .season-list {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: -20px;
 }
 
 .season {
+  flex: 0 1 154px;
   cursor: pointer;
+  margin: 20px;
 }
 
   .season-number {

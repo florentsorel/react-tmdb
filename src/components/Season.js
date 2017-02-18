@@ -4,7 +4,7 @@ import moment from 'moment'
 const Season = (props) => {
   const posterUrl = 'https://image.tmdb.org/t/p/w' + props.posterSize + props.poster
   return (
-    <div className="season" onClick={() => props.onClick(props.id)}>
+    <div className="season" onClick={() => props.onClick(props.number)}>
       <div className="season-number">Season {props.number}</div>
       {props.poster && <img src={posterUrl} alt={props.number} className="season-poster"/>}
       {props.airDate && <div className="season-date">{moment(props.airDate).format('MM/DD/YYYY')}</div>}
@@ -15,7 +15,7 @@ const Season = (props) => {
 Season.propTypes = {
   id: PropTypes.number,
   number: PropTypes.number.isRequired,
-  airDate: PropTypes.string.isRequired,
+  airDate: PropTypes.string,
   poster: PropTypes.string,
   posterSize: PropTypes.oneOf([92, 154, 185, 342, 500, 780]),
   onClick: PropTypes.func

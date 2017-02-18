@@ -58,7 +58,7 @@ class TvShowDetails extends Component {
             firstAirDate={data.first_air_date} />
         </div>
 
-        <SeasonList data={this.state.tvShow.seasons} />
+        <SeasonList tvShowId={data.id} data={this.state.tvShow.seasons} />
       </div>
     )
   }

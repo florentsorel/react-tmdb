@@ -15,11 +15,18 @@ function findTvShow (tvId) {
   return tmdb.get('/tv/' + tvId + params)
 }
 
+function findSeason (tvId, seasonNumber) {
+  return tmdb.get('/tv/' + tvId + '/season/' + seasonNumber + params)
+}
+
 export default {
   search: function (query) {
     return searchTvShow(query)
   },
   find: function (tvShowId) {
     return findTvShow(tvShowId)
+  },
+  findSeason: function (tvShowId, seasonNumber) {
+    return findSeason(tvShowId, seasonNumber)
   }
 }

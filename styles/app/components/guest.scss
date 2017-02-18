@@ -1,0 +1,16 @@
+.guest-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: -20px;
+}
+
+  .guest {
+    flex: 0 1 185px;
+    margin: 20px;
+  }
+
+  .guest-info {
+    text-align: center;
+    font-weight: bold;
+  }
