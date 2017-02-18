@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import TvShow from '../components/TvShow'
-import moment from 'moment'
+import SeasonList from './SeasonList';
 import tmdb from '../tmdb/api'
 
 class TvShowDetails extends Component {
@@ -50,12 +50,15 @@ class TvShowDetails extends Component {
 
     const data = this.props.data
     return (
-      <div className="tvshow-list">
-        <TvShow
-          name={data.original_name}
-          poster={data.poster_path}
-          firstAirDate={moment(data.first_air_date).format('MM/DD/YYYY')} />
+      <div>
+        <div className="tvshow-list">
+          <TvShow
+            name={data.original_name}
+            poster={data.poster_path}
+            firstAirDate={data.first_air_date} />
+        </div>
 
+        <SeasonList data={this.state.tvShow.seasons} />
       </div>
     )
   }

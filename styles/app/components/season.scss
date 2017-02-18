@@ -1,0 +1,21 @@
+.season-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.season {
+  cursor: pointer;
+}
+
+  .season-number {
+    text-align: center;
+  }
+
+  .season-poster {
+    display: block;
+  }
+
+  .season-date {
+    text-align: center;
+  }
