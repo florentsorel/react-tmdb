@@ -3,7 +3,7 @@ import moment from 'moment'
 
 const Episode = (props) => {
   return (
-    <a className="list-group-item" onClick={() => props.onClick(props.guestStars)}>
+    <a className={"list-group-item" + (props.active ? ' active' : '')} onClick={() => props.onClick(props.guests, props.id)}>
       <span>{props.number}.</span> <span>{props.title}</span>
     </a>
   )
@@ -15,7 +15,7 @@ Episode.propTypes = {
   number: PropTypes.number.isRequired,
   airDate: PropTypes.string,
   onClick: PropTypes.func,
-  guestStars: PropTypes.array,
+  guests: PropTypes.array,
 }
 
 export default Episode

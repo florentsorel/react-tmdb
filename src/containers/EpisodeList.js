@@ -12,15 +12,17 @@ class EpisodeList extends Component {
     super()
 
     this.state = {
-      guestStars: null,
+      guests: null,
+      currentEpisode: null,
     }
 
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick (guestStars) {
+  handleClick (guests, episodeId) {
     this.setState({
-      guestStars: guestStars
+      guests: guests,
+      currentEpisode: episodeId
     })
   }
 
@@ -30,19 +32,21 @@ class EpisodeList extends Component {
         <h2 className="h4">In which episode did you see the guest?</h2>
         <ul className="list-group episode-list">
           {this.props.data.map(episode => {
+            const active = episode.id === this.state.currentEpisode
             return <Episode
               onClick={this.handleClick}
               id={episode.id}
               title={episode.name}
               number={episode.episode_number}
               airDate={episode.air_date}
-              guestStars={episode.guest_stars}
+              guests={episode.guest_stars}
+              active={active}
               key={episode.id}
             />
           })}
         </ul>
 
-        {this.state.guestStars != null && <GuestList data={this.state.guestStars} />}
+        {this.state.guests != null && <GuestList data={this.state.guests} />}
       </div>
     )
   }
